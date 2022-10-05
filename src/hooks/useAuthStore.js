@@ -12,8 +12,6 @@ export const useAuthStore = () => {
   const dispatch = useDispatch();
 
   const startLogin = async ({ email, password }) => {
-    // console.log({ email, password });
-
     try {
       const { data } = await calendarApi.post("/auth", { email, password });
       localStorage.setItem("token", data.token);
@@ -23,7 +21,7 @@ export const useAuthStore = () => {
       dispatch(onLogout("Credenciales incorrectas"));
       setTimeout(() => {
         dispatch(clearErrorMessage());
-      }, 10);
+      }, 100);
     }
   };
 
