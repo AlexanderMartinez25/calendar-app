@@ -59,14 +59,20 @@ export const useAuthStore = () => {
     }
   };
 
+  const startLogout = () => {
+    localStorage.clear();
+    dispatch(onLogout());
+  };
+
   return {
     //* Propiedades
     status,
     user,
     errorMessage,
     //* Métodos
-    startLogin,
-    startRegister,
     checkAuthToken,
+    startLogin,
+    startLogout,
+    startRegister,
   };
 };
