@@ -4,6 +4,7 @@ import { convertEventsToDateEvents } from "../helpers";
 import {
   onAddNewEvent,
   onDeleteEvent,
+  onLoadEvents,
   onSetActiveEvent,
   onUpdateEvent,
 } from "../store";
@@ -40,7 +41,8 @@ export const useCalendarStore = () => {
     try {
       const { data } = await calendarApi.get("/events");
       const events = convertEventsToDateEvents(data.eventos);
-      console.log(data.eventos);
+      dispatch(onLoadEvents(events));
+      console.log(events);
     } catch (error) {
       console.log("Error cargando eventos");
       console.log(error);
