@@ -118,10 +118,6 @@ describe("Pruebas en useAuthStore", () => {
     });
 
     const { errorMessage, status, user } = result.current;
-
-    console.log({ errorMessage, status, user });
-
-    // expect(localStorage.getItem("token")).toBe(null);
     expect({ errorMessage, status, user }).toEqual({
       errorMessage: undefined,
       status: "authenticated",
@@ -129,5 +125,25 @@ describe("Pruebas en useAuthStore", () => {
     });
 
     spy.mockRestore();
+  });
+
+  test("startRegister debe de fallar la creación", async () => {
+    const mockStore = getMockStore({ ...notAuthenticatedState });
+    const { result } = renderHook(() => useAuthStore(), {
+      wrapper: ({ children }) => (
+        <Provider store={mockStore}>{children}</Provider>
+      ),
+    });
+
+    await act(async () => {
+      await result.current.startRegister(testUserCredentials);
+    });
+
+    const { errorMessage, status, user } = result.current;
+    expect({ errorMessage, status, user }).toEqual({
+      errorMessage: "Un usuario existe con ese correo",
+      status: "not-authenticated",
+      user: {},
+    });
   });
 });
