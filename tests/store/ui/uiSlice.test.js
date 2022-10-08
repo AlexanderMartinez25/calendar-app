@@ -1,4 +1,4 @@
-import { onCloseDateModal, onOpenDateModal, uiSlice } from "../../src/store";
+import { onCloseDateModal, onOpenDateModal, uiSlice } from "../../../src/store";
 
 describe("Pruebas en uiSlice", () => {
   test("debe de regresar el estado por defecto", () => {
