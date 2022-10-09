@@ -25,6 +25,8 @@ describe('Pruebas en <AppRouter />', () => {
 
     render(<AppRouter />)
     expect(screen.getByText('Cargando')).toBeTruthy()
+
+    //* por lguna extraña razón me da error
     // expect(mockCheckAuthToken).toHaveBeenCalled();
 
   });
